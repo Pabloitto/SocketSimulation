@@ -1,7 +1,11 @@
-var net = require("net");
-var server = net.createServer(function (socket) {
-    socket.write('90');
-	socket.pipe(socket);
+var http = require("http");
+var server = http.createServer(function (request,response) {
+
+    response.writeHead(200, {"Content-Type": "text/plain"})
+
+    response.write('90');
+	response.pipe(response);
+	response.end();
     /*socket.setEncoding("utf8");
     socket.on('data', function (data) {
         try {
