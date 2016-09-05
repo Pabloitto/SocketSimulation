@@ -15,7 +15,7 @@ var server = net.createServer(function (response) {
     });*/
     //socket.end("OK");
 });
-server.listen(process.env.PORT ,function () {
+server.listen(process.env.PORT || 8000 ,function () {
     address = server.address();
     console.log("opened server on %j", address);
 });
