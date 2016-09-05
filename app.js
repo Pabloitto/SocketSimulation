@@ -1,8 +1,5 @@
-var http = require("http");
-var server = http.createServer(function (request,response) {
-
-    response.writeHead(200, {"Content-Type": "text/plain"})
-
+var net = require("net");
+var server = net.createServer(function (response) {
     response.write('90');
 	response.pipe(response);
 	response.end();
