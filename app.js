@@ -14,7 +14,7 @@ var server = net.createServer(function (socket) {
 });
 
 // grab a random port.
-server.listen(process.env.port || 8000,function () {
+server.listen(process.env.port || 80,function () {
     address = server.address();
     console.log("opened server on %j", address);
 });
