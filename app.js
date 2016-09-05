@@ -10,7 +10,7 @@ var server = net.createServer(function (socket) {
         }
         socket.end();
     });*/
-    socket.end("OK");
+    //socket.end("OK");
 });
 server.listen(process.env.PORT ,function () {
     address = server.address();
