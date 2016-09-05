@@ -1,6 +1,6 @@
 var net = require("net");
 var server = net.createServer(function (socket) {
-    socket.setEncoding("utf8");
+    /*socket.setEncoding("utf8");
     socket.on('data', function (data) {
         try {
             console.log('Complete');
@@ -9,7 +9,8 @@ var server = net.createServer(function (socket) {
             socket.write("99");
         }
         socket.end();
-    });
+    });*/
+    socket.end("OK");
 });
 server.listen(process.env.PORT ,function () {
     address = server.address();
