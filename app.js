@@ -10,11 +10,8 @@ var server = net.createServer(function (socket) {
         }
         socket.end();
     });
-    //socket.end("goodbye\n");
 });
-
-// grab a random port.
-server.listen(function () {
+server.listen(process.env.PORT ,function () {
     address = server.address();
     console.log("opened server on %j", address);
 });
