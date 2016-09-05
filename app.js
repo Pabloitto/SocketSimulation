@@ -1,21 +1,30 @@
-var net = require("net");
-var server = net.createServer(function (response) {
-    response.write('90');
-	response.pipe(response);
-	response.end();
-    /*socket.setEncoding("utf8");
-    socket.on('data', function (data) {
-        try {
-            console.log('Complete');
-            socket.write("90");
-        } catch (error) {
-            socket.write("99");
-        }
-        socket.end();
-    });*/
-    //socket.end("OK");
+var net = require('net');
+
+var server = net.createServer();  
+server.on('connection', handleConnection);
+
+server.listen(process.env.PORT || 8000, function() {  
+  console.log('server listening to %j', server.address());
 });
-server.listen(process.env.PORT || 8000 ,function () {
-    address = server.address();
-    console.log("opened server on %j", address);
-});
+
+function handleConnection(conn) {  
+  var remoteAddress = conn.remoteAddress + ':' + conn.remotePort;
+  console.log('new client connection from %s', remoteAddress);
+
+  conn.on('data', onConnData);
+  conn.once('close', onConnClose);
+  conn.on('error', onConnError);
+
+  function onConnData(d) {
+    console.log('connection data from %s', remoteAddress);
+    conn.write("90");
+  }
+
+  function onConnClose() {
+    console.log('connection from %s closed', remoteAddress);
+  }
+
+  function onConnError(err) {
+    console.log('Connection %s error: %s', remoteAddress, err.message);
+  }
+}
